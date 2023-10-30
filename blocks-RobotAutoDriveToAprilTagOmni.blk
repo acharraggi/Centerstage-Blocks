@@ -1,0 +1,1948 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+<variables>
+<variable id="l)/,LjA`jR!1Nc@Z:`l!">myAprilTagDetections</variable>
+<variable id=":3L_e1zj?UbkSA-NkcqK">DESIRED_TAG_ID</variable>
+<variable type="AprilTagProcessor.Builder" id="qru*?k)-GUmqOoA$xa#;">myAprilTagProcessorBuilder</variable>
+<variable id="H_,Vr5NWjtiL6smOIXxM">DESIRED_DISTANCE</variable>
+<variable id="5HuSi||~.#=Plkm/1M43">leftFrontPower</variable>
+<variable id="?.?jAjDXaP~!^(jq/Ls_">myAprilTagProcessor</variable>
+<variable id="vP~n9zf$lW%hYD/C.j_-">myAprilTagDetection</variable>
+<variable id="apm!MLSJj|sn(/Mht$4=">SPEED_GAIN</variable>
+<variable id="7]zqkDWKo{@=n^XIOFEV">rightFrontPower</variable>
+<variable id="iO)=d1!h?)/,N]BlTPAy">STRAFE_GAIN</variable>
+<variable type="VisionPortal.Builder" id="?/a.@4cz_^+-?7?etGx;">myVisionPortalBuilder</variable>
+<variable id="oNy^sd0[Y].*E%Ega;Lc">turn</variable>
+<variable id="cg^aX{uc4{#^+^X/Wl@D">LeftBackPower</variable>
+<variable id="=ntl:3H#Gx2pSy6lr#xD">TURN_GAIN</variable>
+<variable id="yuQ8Y9VD$0X_^4wIhMEm">drive</variable>
+<variable id="w,v/gS]9s/|CHHmRZm7!">strafe</variable>
+<variable id="+I)4RDvi7FC`XkK(9H3s">rightBackPower</variable>
+<variable id="jXZs4@LGa!|$ZWPd6mvW">MAX_AUTO_SPEED</variable>
+<variable id="EZ|/cML_K)yJfI.]*3;O">MAX_AUTO_STRAFE</variable>
+<variable id="TsYkM[VU^Ab|3RMw10HM">desiredTag</variable>
+<variable id=":QwUnwG~F7u,m=J0g@Z7">MAX_AUTO_TURN</variable>
+<variable id="-BBD?y)tt1`Xi1~w=paN">myVisionPortal</variable>
+<variable id="`/{ioR,|%4ZjMzN;}g^x">max</variable>
+<variable id="Y8`SqjhNJX2,bPwL:7C%">targetFound</variable>
+<variable id="wHq8h#{7!,471??UOtoM">rangeError</variable>
+<variable id="[kc^mCZuB]bO]L7p.m{,">headingError</variable>
+<variable id="cmD?(y5mk`d.YmVMtR{Q">yawError</variable>
+</variables>
+<block type="procedures_defnoreturn" id="%r$h^s=.G{-(+2*nFouR" x="-333" y="46">
+<field name="NAME">initDriving</field>
+<comment pinned="false" h="80" w="160">Describe this function...</comment>
+<statement name="STACK">
+<block type="comment" id="7:I[dS{6|}{dk]+Cj%fc">
+<field name="COMMENT">use 584 for demo, use 1 to 10 for Centerstage tags</field>
+<next>
+<block type="variables_set" id="Ql-Sl*39rOu2Ut~)S%Ij">
+<field name="VAR" id=":3L_e1zj?UbkSA-NkcqK">DESIRED_TAG_ID</field>
+<value name="VALUE">
+<block type="math_number" id="h3:Irek*Ib3du{Zq~yEg">
+<field name="NUM">7</field>
+</block>
+</value>
+<next>
+<block type="variables_set" id="7Zx^SPW2{hBY|RYQ8cqs">
+<field name="VAR" id="H_,Vr5NWjtiL6smOIXxM">DESIRED_DISTANCE</field>
+<value name="VALUE">
+<block type="math_number" id="A#w!0W9OPSI{MEiPtD=!">
+<field name="NUM">18</field>
+</block>
+</value>
+<next>
+<block type="variables_set" id="?K%i8C+sUO(_t,;wvu7/">
+<field name="VAR" id="apm!MLSJj|sn(/Mht$4=">SPEED_GAIN</field>
+<value name="VALUE">
+<block type="math_number" id="-=xyOY`F(w~^7v8?!~H-">
+<field name="NUM">0.02</field>
+</block>
+</value>
+<next>
+<block type="variables_set" id="Lt;D2!Y0g$81B8I+#$`3">
+<field name="VAR" id="iO)=d1!h?)/,N]BlTPAy">STRAFE_GAIN</field>
+<value name="VALUE">
+<block type="math_number" id="x1!^M]w*jK%z{0(uOwQf">
+<field name="NUM">0.01</field>
+</block>
+</value>
+<next>
+<block type="variables_set" id="B*)dl~-@r}0ukWWO5KO-">
+<field name="VAR" id="=ntl:3H#Gx2pSy6lr#xD">TURN_GAIN</field>
+<value name="VALUE">
+<block type="math_number" id="j^x^*9#+?D~c(0hV`}qP">
+<field name="NUM">0.01</field>
+</block>
+</value>
+<next>
+<block type="variables_set" id="]OlZ#!$o=D]k?qwO,W.~">
+<field name="VAR" id="jXZs4@LGa!|$ZWPd6mvW">MAX_AUTO_SPEED</field>
+<value name="VALUE">
+<block type="math_number" id="6^h2MOHIk2MexVAsh[8E">
+<field name="NUM">0.5</field>
+</block>
+</value>
+<next>
+<block type="variables_set" id="kM!WwT8}6N-Ykzn9`-z{">
+<field name="VAR" id="EZ|/cML_K)yJfI.]*3;O">MAX_AUTO_STRAFE</field>
+<value name="VALUE">
+<block type="math_number" id="_}U!s=%}zUiCF5]^;Z.g">
+<field name="NUM">0.5</field>
+</block>
+</value>
+<next>
+<block type="variables_set" id="55@#gB3r(q$ox!cG/.xJ">
+<field name="VAR" id=":QwUnwG~F7u,m=J0g@Z7">MAX_AUTO_TURN</field>
+<value name="VALUE">
+<block type="math_number" id="ziK]?x}xC;4nu?mKP0dN">
+<field name="NUM">0.3</field>
+</block>
+</value>
+<next>
+<block type="dcMotor_setProperty_Direction" id="4b}Q7I]V005tJrK;T2*Q">
+<field name="IDENTIFIER">drive_rightBackAsDcMotor</field>
+<field name="PROP">Direction</field>
+<data>{"IDENTIFIER":"drive_rightBack"}</data>
+<value name="VALUE">
+<shadow type="dcMotor_typedEnum_direction" id="~3`V,}:GmH7P.fHvzq70">
+<field name="DIRECTION">FORWARD</field>
+</shadow>
+</value>
+<next>
+<block type="dcMotor_setProperty_Direction" id="7[l~tEAa:L+7Js{{h=W!">
+<field name="IDENTIFIER">drive_leftBackAsDcMotor</field>
+<field name="PROP">Direction</field>
+<data>{"IDENTIFIER":"drive_leftBack"}</data>
+<value name="VALUE">
+<shadow type="dcMotor_typedEnum_direction" id="mb_mRC2{_jGdYDtG]rxn">
+<field name="DIRECTION">REVERSE</field>
+</shadow>
+</value>
+<next>
+<block type="dcMotor_setProperty_Direction" id="@Qa6;+%$=:H3)!X90D*9">
+<field name="IDENTIFIER">drive_rightFrontAsDcMotor</field>
+<field name="PROP">Direction</field>
+<data>{"IDENTIFIER":"drive_rightFront"}</data>
+<value name="VALUE">
+<shadow type="dcMotor_typedEnum_direction" id="Vy[n8|?oTYJib._*jC$4">
+<field name="DIRECTION">FORWARD</field>
+</shadow>
+</value>
+<next>
+<block type="dcMotor_setProperty_Direction" id="}wpnb!IHwWC_-*}~s*_Z">
+<field name="IDENTIFIER">drive_leftFrontAsDcMotor</field>
+<field name="PROP">Direction</field>
+<data>{"IDENTIFIER":"drive_leftFront"}</data>
+<value name="VALUE">
+<shadow type="dcMotor_typedEnum_direction" id="*zG4:Hk*k7_lel,y%lga">
+<field name="DIRECTION">REVERSE</field>
+</shadow>
+</value>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+<block type="procedures_defnoreturn" id="WtpyD@tEu+EoY=P9iY,D" deletable="false" x="235" y="30">
+<field name="NAME">runOpMode</field>
+<comment pinned="false" h="45" w="532">This function is executed when this OpMode is selected from the Driver Station.</comment>
+<statement name="STACK">
+<block type="comment" id="vG1;7$#*;crH,9)V$Lbq">
+<field name="COMMENT">This 2023-2024 OpMode illustrates using AprilTag recognition and pose estimation to control navigation in autonomous. </field>
+<next>
+<block type="comment" id="[:A{s_85Uc,qF=k?#L/Z">
+<field name="COMMENT">Based on the Java sample program RobotAutoDriveToAprilTagOmni, but this program is strictly autonomous.</field>
+<next>
+<block type="comment" id="uSx;aQcXNU=-Q~Fdl~u$">
+<field name="COMMENT">Set the DESIRED_TAG_ID to a value to have the robot drive autonomously to the April Tag.</field>
+<next>
+<block type="telemetry_addLine" id="`=V:$7/B;Oo,_UrJTNRN">
+<value name="TEXT">
+<shadow type="text" id="u{}I08@/XQl6Gz+@Y9~#">
+<field name="TEXT">Wait for Vision Portal to Initialize</field>
+</shadow>
+</value>
+<next>
+<block type="telemetry_update" id="ZrTh1q1y)Ca5I0^a|*cU">
+<next>
+<block type="procedures_callnoreturn" id="6Khk0)n56[srL=NmWr!Z">
+<mutation name="initDriving"/>
+<next>
+<block type="procedures_callnoreturn" id="wTJsPDhl?K:MJX?f1:k;">
+<mutation name="InitApriltTag"/>
+<next>
+<block type="comment" id="/TX8,^RvHuP6X%R,Py^^">
+<field name="COMMENT">Wait for the match to begin.</field>
+<next>
+<block type="telemetry_addTextData_All" id="Y/b(p3p_Ls7l_.)bQt%8">
+<value name="KEY">
+<shadow type="text" id="]K/@Q[7z:EBSoy.ggFCo">
+<field name="TEXT">DS preview on/off</field>
+</shadow>
+</value>
+<value name="TEXT">
+<shadow type="text" id="eV-62@bA|1V9{)n7lim2">
+<field name="TEXT">3 dots, Camera Stream</field>
+</shadow>
+</value>
+<next>
+<block type="telemetry_addTextData_All" id="/Zm[n8^)(`(S}Ab9j!;|">
+<value name="KEY">
+<shadow type="text" id="E)4aB(Zb2,Da/0v0AiN=">
+<field name="TEXT">&gt;</field>
+</shadow>
+</value>
+<value name="TEXT">
+<shadow type="text" id="^u5_oh+s(.Vs1Kk;$yw9">
+<field name="TEXT">Touch Play to start OpMode</field>
+</shadow>
+</value>
+<next>
+<block type="telemetry_addNumericData_Number" id="8e(oD@/A=D:oWS{j^/`.">
+<value name="KEY">
+<shadow type="text" id="h4jL]b%z2Pl]@rl,hJLb">
+<field name="TEXT">Robot will look for tag</field>
+</shadow>
+</value>
+<value name="NUMBER">
+<shadow type="math_number" id="w{No;$,|_cjAXkXqJ?|A">
+<field name="NUM">123</field>
+</shadow>
+<block type="variables_get" id="K;;4q*r1*!/SzrOO!7ie">
+<field name="VAR" id=":3L_e1zj?UbkSA-NkcqK">DESIRED_TAG_ID</field>
+</block>
+</value>
+<next>
+<block type="telemetry_update" id="CcM7+$syN,5p}u1NCi8q">
+<next>
+<block type="linearOpMode_waitForStart" id=":`$wN_ci`O;o6P0~.(+g">
+<next>
+<block type="controls_if" id="}Q?5mbxSO8Di;i!__6[y">
+<value name="IF0">
+<block type="linearOpMode_opModeIsActive" id=")o%YFX/#9kvv^sgXr4~5"/>
+</value>
+<statement name="DO0">
+<block type="comment" id="(rU-p_T_/B|vExcs}liL">
+<field name="COMMENT">Put run blocks here.</field>
+<next>
+<block type="controls_whileUntil" id="^0Kagy/e+Ea{rbZPv2G6">
+<field name="MODE">WHILE</field>
+<value name="BOOL">
+<block type="linearOpMode_opModeIsActive" id="e)cr{!2VIET83s,JWC.="/>
+</value>
+<statement name="DO">
+<block type="comment" id="Jh/;L$n@JuX8AQJDFCul">
+<field name="COMMENT">Put loop blocks here.</field>
+<next>
+<block type="variables_set" id=".zNs|%nIj$l)Hz[D[hW*">
+<field name="VAR" id="TsYkM[VU^Ab|3RMw10HM">desiredTag</field>
+<value name="VALUE">
+<block type="misc_null" id=":H+*ZG[eht/m]m[XXZnX"/>
+</value>
+<next>
+<block type="variables_set" id="@YGNFyks,a!5;F_1/sj|">
+<field name="VAR" id="Y8`SqjhNJX2,bPwL:7C%">targetFound</field>
+<value name="VALUE">
+<block type="logic_boolean" id="9|z%4UaHkM,6b6MXAPZ`">
+<field name="BOOL">FALSE</field>
+</block>
+</value>
+<next>
+<block type="variables_set" id=";jST)JUsz+#$bO}=LK,X">
+<field name="VAR" id="yuQ8Y9VD$0X_^4wIhMEm">drive</field>
+<value name="VALUE">
+<block type="math_number" id="{9M#m94/RHjB$8%F)*)Z">
+<field name="NUM">0</field>
+</block>
+</value>
+<next>
+<block type="variables_set" id="6?U4W6yROCl=/Wtrzbw|">
+<field name="VAR" id="w,v/gS]9s/|CHHmRZm7!">strafe</field>
+<value name="VALUE">
+<block type="math_number" id="szIZ1oFYg9d%C|s*{#Q:">
+<field name="NUM">0</field>
+</block>
+</value>
+<next>
+<block type="variables_set" id="Kor+(bb+BsEybzpyudB/">
+<field name="VAR" id="oNy^sd0[Y].*E%Ega;Lc">turn</field>
+<value name="VALUE">
+<block type="math_number" id="l];A9l9r$m]?I|sibF0}">
+<field name="NUM">0</field>
+</block>
+</value>
+<next>
+<block type="procedures_callnoreturn" id="L1~6q-w9m`2ahlT|b!@A">
+<mutation name="telemetryAprilTag"/>
+<next>
+<block type="controls_if" id="D:XuGUfdJo,b6%-.5|(L">
+<value name="IF0">
+<block type="variables_get" id="N-29!9xA`_(UF*y;t|,-">
+<field name="VAR" id="Y8`SqjhNJX2,bPwL:7C%">targetFound</field>
+</block>
+</value>
+<statement name="DO0">
+<block type="variables_set" id="[o}l-$vv/~+%b5JLPG2,">
+<field name="VAR" id="wHq8h#{7!,471??UOtoM">rangeError</field>
+<value name="VALUE">
+<block type="math_arithmetic" id="B(G)0P.,?/t:~Aja(6Xv">
+<field name="OP">MINUS</field>
+<value name="A">
+<shadow type="math_number" id="d|nK+Y{q;p;hc5TZ_pYs">
+<field name="NUM">1</field>
+</shadow>
+<block type="aprilTagDetection_getProperty_Number" id="rS1U_7.ZeV#!Qq*MD=91">
+<field name="PROP">ftcPose.range</field>
+<value name="APRIL_TAG_DETECTION">
+<block type="variables_get" id="7z[9C|bW%%Yj![%mrpAo">
+<field name="VAR" id="TsYkM[VU^Ab|3RMw10HM">desiredTag</field>
+</block>
+</value>
+</block>
+</value>
+<value name="B">
+<shadow type="math_number" id="YPeeiw-s+6VapKmRZ2bS">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="h`MR*Scs!8S;yTiKGC`E">
+<field name="VAR" id="H_,Vr5NWjtiL6smOIXxM">DESIRED_DISTANCE</field>
+</block>
+</value>
+</block>
+</value>
+<next>
+<block type="variables_set" id="/+5NA}ac^~%ws_Ss72QJ">
+<field name="VAR" id="[kc^mCZuB]bO]L7p.m{,">headingError</field>
+<value name="VALUE">
+<block type="aprilTagDetection_getProperty_Number" id="NT,[!pNOVq.+`D24|H,~">
+<field name="PROP">ftcPose.bearing</field>
+<value name="APRIL_TAG_DETECTION">
+<block type="variables_get" id="S9-[:OS1XUKXM*RB9E*U">
+<field name="VAR" id="TsYkM[VU^Ab|3RMw10HM">desiredTag</field>
+</block>
+</value>
+</block>
+</value>
+<next>
+<block type="variables_set" id="UedsvxRLB*Yw:XTTs*a9">
+<field name="VAR" id="cmD?(y5mk`d.YmVMtR{Q">yawError</field>
+<value name="VALUE">
+<block type="aprilTagDetection_getProperty_Number" id="oBg93i9wI!N@(7Fn[iaK">
+<field name="PROP">ftcPose.yaw</field>
+<value name="APRIL_TAG_DETECTION">
+<block type="variables_get" id="KuhP0$|3gr}mo9=vF4bz">
+<field name="VAR" id="TsYkM[VU^Ab|3RMw10HM">desiredTag</field>
+</block>
+</value>
+</block>
+</value>
+<next>
+<block type="variables_set" id="12Oa0WCCHOc;[!TW{r|P">
+<field name="VAR" id="yuQ8Y9VD$0X_^4wIhMEm">drive</field>
+<value name="VALUE">
+<block type="math_constrain" id="mz?JXRFA8wAr=yq!2j=m">
+<value name="VALUE">
+<shadow type="math_number" id="9!)wTkJ|%:rp(:]2(RHU">
+<field name="NUM">50</field>
+</shadow>
+<block type="math_arithmetic" id="q~V,9}yiGyRG]sL/rGyu">
+<field name="OP">MULTIPLY</field>
+<value name="A">
+<shadow type="math_number" id="@/7Yf7gRh(3@s6POhL0[">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id=".l8Ue:aj/l||AjE4fpmJ">
+<field name="VAR" id="wHq8h#{7!,471??UOtoM">rangeError</field>
+</block>
+</value>
+<value name="B">
+<shadow type="math_number" id="jJI?],^h~3mmwWjvKLi4">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="SkaY{Ua{=E8lLR/G4_P=">
+<field name="VAR" id="apm!MLSJj|sn(/Mht$4=">SPEED_GAIN</field>
+</block>
+</value>
+</block>
+</value>
+<value name="LOW">
+<shadow type="math_number" id=":pK.59|m9S8moibfDieV">
+<field name="NUM">1</field>
+</shadow>
+<block type="math_single" id=":__TBd8YTL(Nw_!KWM%-">
+<field name="OP">NEG</field>
+<value name="NUM">
+<shadow type="math_number" id="b5pE!,oUYW9r]6}E+)*v">
+<field name="NUM">9</field>
+</shadow>
+<block type="variables_get" id="(+baLpGDc]UUD6epb.4=">
+<field name="VAR" id="jXZs4@LGa!|$ZWPd6mvW">MAX_AUTO_SPEED</field>
+</block>
+</value>
+</block>
+</value>
+<value name="HIGH">
+<shadow type="math_number" id="sR7oF-HR9JyjgMs?~o]2">
+<field name="NUM">100</field>
+</shadow>
+<block type="variables_get" id="lrumEm62]M*mM:h9iwXt">
+<field name="VAR" id="jXZs4@LGa!|$ZWPd6mvW">MAX_AUTO_SPEED</field>
+</block>
+</value>
+</block>
+</value>
+<next>
+<block type="variables_set" id="9g8KPI!KO/=`S:[f~aVv">
+<field name="VAR" id="oNy^sd0[Y].*E%Ega;Lc">turn</field>
+<value name="VALUE">
+<block type="math_constrain" id="Kd.v9eW}2%_AUrJ_.--[">
+<value name="VALUE">
+<shadow type="math_number">
+<field name="NUM">50</field>
+</shadow>
+<block type="math_arithmetic" id="XbB?o=9,sr7$}dKV,3.~">
+<field name="OP">MULTIPLY</field>
+<value name="A">
+<shadow type="math_number">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="e;{oV{Z4~6bneRNkDU_P">
+<field name="VAR" id="[kc^mCZuB]bO]L7p.m{,">headingError</field>
+</block>
+</value>
+<value name="B">
+<shadow type="math_number">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="Rc8K7lMi-{1l@T%d=Qk;">
+<field name="VAR" id="=ntl:3H#Gx2pSy6lr#xD">TURN_GAIN</field>
+</block>
+</value>
+</block>
+</value>
+<value name="LOW">
+<shadow type="math_number">
+<field name="NUM">1</field>
+</shadow>
+<block type="math_single" id="csF,t)?.a#fn[ZotPf@$">
+<field name="OP">NEG</field>
+<value name="NUM">
+<shadow type="math_number">
+<field name="NUM">9</field>
+</shadow>
+<block type="variables_get" id="pdEo?ppI5Em__hr)l%`e">
+<field name="VAR" id=":QwUnwG~F7u,m=J0g@Z7">MAX_AUTO_TURN</field>
+</block>
+</value>
+</block>
+</value>
+<value name="HIGH">
+<shadow type="math_number">
+<field name="NUM">100</field>
+</shadow>
+<block type="variables_get" id="}HYT)qkpMAyHz4zf?4lw">
+<field name="VAR" id=":QwUnwG~F7u,m=J0g@Z7">MAX_AUTO_TURN</field>
+</block>
+</value>
+</block>
+</value>
+<next>
+<block type="variables_set" id="*y.U|M7{nPqOJV}!u)=P">
+<field name="VAR" id="w,v/gS]9s/|CHHmRZm7!">strafe</field>
+<value name="VALUE">
+<block type="math_constrain" id=";vo0ex7=rd8[w^3s%G{O">
+<value name="VALUE">
+<shadow type="math_number">
+<field name="NUM">50</field>
+</shadow>
+<block type="math_arithmetic" id="GTti?kneRd=S{Cd;mRmo">
+<field name="OP">MULTIPLY</field>
+<value name="A">
+<shadow type="math_number">
+<field name="NUM">1</field>
+</shadow>
+<block type="math_single" id="{-M9nB88f=]Zn-hv%0Zh">
+<field name="OP">NEG</field>
+<value name="NUM">
+<shadow type="math_number" id="[ue*gIU6[^EC!%h-1a{S">
+<field name="NUM">9</field>
+</shadow>
+<block type="variables_get" id="Zp_zj~a3N[IA-}b/YDB?">
+<field name="VAR" id="cmD?(y5mk`d.YmVMtR{Q">yawError</field>
+</block>
+</value>
+</block>
+</value>
+<value name="B">
+<shadow type="math_number">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="SEx7=Oalu^l!iRZU$|)z">
+<field name="VAR" id="iO)=d1!h?)/,N]BlTPAy">STRAFE_GAIN</field>
+</block>
+</value>
+</block>
+</value>
+<value name="LOW">
+<shadow type="math_number">
+<field name="NUM">1</field>
+</shadow>
+<block type="math_single" id="9B@fA4}PnU@5{Zj~#-cY">
+<field name="OP">NEG</field>
+<value name="NUM">
+<shadow type="math_number">
+<field name="NUM">9</field>
+</shadow>
+<block type="variables_get" id="hg^-hXxR:r-AniO!;OH!">
+<field name="VAR" id="EZ|/cML_K)yJfI.]*3;O">MAX_AUTO_STRAFE</field>
+</block>
+</value>
+</block>
+</value>
+<value name="HIGH">
+<shadow type="math_number">
+<field name="NUM">100</field>
+</shadow>
+<block type="variables_get" id=";2F%o`uYwU(Hg0GJmS;?">
+<field name="VAR" id="EZ|/cML_K)yJfI.]*3;O">MAX_AUTO_STRAFE</field>
+</block>
+</value>
+</block>
+</value>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+<next>
+<block type="telemetry_addLine" id="][ahJxccnMe!7xmk*e]~">
+<value name="TEXT">
+<shadow type="text">
+<field name="TEXT"/>
+</shadow>
+<block type="text_join" id="Vc9P4}%x.BAm[/|5vC.^">
+<mutation items="7"/>
+<value name="ADD0">
+<block type="text" id="{hE}HSZt[S]LNRH(X-i*">
+<field name="TEXT">Drive</field>
+</block>
+</value>
+<value name="ADD1">
+<block type="misc_formatNumber_withWidth" id="*U+31]FfkbN,ASj#.f4x">
+<value name="NUMBER">
+<shadow type="math_number">
+<field name="NUM">3.14159265</field>
+</shadow>
+<block type="variables_get" id="Zk*Zd*8ipcXj}imT~{Ep">
+<field name="VAR" id="yuQ8Y9VD$0X_^4wIhMEm">drive</field>
+</block>
+</value>
+<value name="WIDTH">
+<shadow type="math_number" id="pH=1][Yn1F%Lqwz_bFdz">
+<field name="NUM">5</field>
+</shadow>
+</value>
+<value name="PRECISION">
+<shadow type="math_number" id="_vPjg)S$dr=td5}a3-XE">
+<field name="NUM">2</field>
+</shadow>
+</value>
+</block>
+</value>
+<value name="ADD2">
+<block type="text" id="3KrW3Avw5xrv8{7UVYZx">
+<field name="TEXT"> </field>
+</block>
+</value>
+<value name="ADD3">
+<block type="misc_formatNumber_withWidth" id="~He=8v,{HmFpo8=YvNK(">
+<value name="NUMBER">
+<shadow type="math_number">
+<field name="NUM">3.14159265</field>
+</shadow>
+<block type="variables_get" id="O5oE0JI1%P=GsT-IpL9b">
+<field name="VAR" id="w,v/gS]9s/|CHHmRZm7!">strafe</field>
+</block>
+</value>
+<value name="WIDTH">
+<shadow type="math_number" id="1t}!w(=S5m2)Nz8.c`T.">
+<field name="NUM">5</field>
+</shadow>
+</value>
+<value name="PRECISION">
+<shadow type="math_number" id="7a2P~7XV+@UiLZb`m!N(">
+<field name="NUM">2</field>
+</shadow>
+</value>
+</block>
+</value>
+<value name="ADD4">
+<block type="text" id="eQ]?xC62-v{Lv?.xD,x7">
+<field name="TEXT"> </field>
+</block>
+</value>
+<value name="ADD5">
+<block type="misc_formatNumber_withWidth" id="O7l;,~0DUuTc.zXmI@K}">
+<value name="NUMBER">
+<shadow type="math_number" id=".:-(Lq.-RT!80JOo9Y*Y">
+<field name="NUM">3.14159265</field>
+</shadow>
+<block type="variables_get" id="IgtTU-k?+FUFLDtN,!m!">
+<field name="VAR" id="oNy^sd0[Y].*E%Ega;Lc">turn</field>
+</block>
+</value>
+<value name="WIDTH">
+<shadow type="math_number" id="Wv*/Tll,n.w8*TAXU^N;">
+<field name="NUM">5</field>
+</shadow>
+</value>
+<value name="PRECISION">
+<shadow type="math_number" id="F#XJJ/}1`NU4Na=%,I%I">
+<field name="NUM">2</field>
+</shadow>
+</value>
+</block>
+</value>
+<value name="ADD6">
+<block type="text" id="kG!MRg0H+[C*_`v5kOBE">
+<field name="TEXT">  (deg)</field>
+</block>
+</value>
+</block>
+</value>
+<next>
+<block type="procedures_callnoreturn" id="I66BZn^80jd-U8=Y{VNg">
+<mutation name="moveRobot"/>
+<next>
+<block type="telemetry_update" id="exvivmft-pX$n!1,8Ea$">
+<comment pinned="false" h="55" w="295">Push telemetry to the Driver Station.</comment>
+<next>
+<block type="linearOpMode_sleep_Number" id="jjoCwI:;J87CrtGs%}K7">
+<comment pinned="false" h="46" w="191">Share the CPU.</comment>
+<value name="MILLISECONDS">
+<shadow type="math_number" id="w~.7$M*lJeh#@I/xsbHy">
+<field name="NUM">20</field>
+</shadow>
+</value>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+<block type="procedures_defnoreturn" id="|Pg]cB`tx*A]c%EXkUDa" x="-484" y="797">
+<field name="NAME">InitApriltTag</field>
+<comment pinned="false" h="80" w="160">Describe this function...</comment>
+<statement name="STACK">
+<block type="comment" id="]y(Lws~ORhutkXT!zlD6">
+<field name="COMMENT">create April Tag builder</field>
+<next>
+<block type="aprilTagProcessorBuilder_create_assign" id="X8i/7tK2/X*wZ)q`#kZ!">
+<field name="APRIL_TAG_PROCESSOR_BUILDER" id="qru*?k)-GUmqOoA$xa#;" variabletype="AprilTagProcessor.Builder">myAprilTagProcessorBuilder</field>
+<comment pinned="false" h="150" w="325">Create a new AprilTagProcessor.Builder object and assign it to a variable.</comment>
+<next>
+<block type="aprilTagProcessorBuilder_setLensIntrinsics" id="v$Gwmn,gJnsol{Wb`Kvo">
+<field name="APRIL_TAG_PROCESSOR_BUILDER" id="qru*?k)-GUmqOoA$xa#;" variabletype="AprilTagProcessor.Builder">myAprilTagProcessorBuilder</field>
+<comment pinned="false" h="150" w="325">Set the lens intrinsics, obtained from a camera calibration.</comment>
+<value name="FX">
+<shadow type="math_number" id="5BOTkga)GBQUTwaFi_eg">
+<field name="NUM">1439.42</field>
+</shadow>
+</value>
+<value name="FY">
+<shadow type="math_number" id="K1xX6FfRV30x:fyzc+Nm">
+<field name="NUM">1439.42</field>
+</shadow>
+</value>
+<value name="CX">
+<shadow type="math_number" id="tnBx~s]|$M4~v(a*i67x">
+<field name="NUM">970.514</field>
+</shadow>
+</value>
+<value name="CY">
+<shadow type="math_number" id="npIXn1,iMp*1ScK|Z0.I">
+<field name="NUM">537.613</field>
+</shadow>
+</value>
+<next>
+<block type="variables_set" id="ab2l;cQR#^H]{jrsFMZR">
+<field name="VAR" id="?.?jAjDXaP~!^(jq/Ls_">myAprilTagProcessor</field>
+<comment pinned="false" h="150" w="325">Build the AprilTag processor and assign it to a variable.</comment>
+<value name="VALUE">
+<block type="aprilTagProcessorBuilder_build" id="z#_8_^3e-66s`dcnK1J#">
+<field name="APRIL_TAG_PROCESSOR_BUILDER" id="qru*?k)-GUmqOoA$xa#;" variabletype="AprilTagProcessor.Builder">myAprilTagProcessorBuilder</field>
+</block>
+</value>
+<next>
+<block type="visionPortalBuilder_create_assign" id="I`b))D,qOS{AbI0x@_-!">
+<field name="VISION_PORTAL_BUILDER" id="?/a.@4cz_^+-?7?etGx;" variabletype="VisionPortal.Builder">myVisionPortalBuilder</field>
+<comment pinned="false" h="150" w="325">Create a VisionPortal.Builder object so you can specify attributes about the cameras.</comment>
+<next>
+<block type="visionPortalBuilder_setCamera" id="r.bquF8fk!U,M)TuR_i[">
+<field name="VISION_PORTAL_BUILDER" id="?/a.@4cz_^+-?7?etGx;" variabletype="VisionPortal.Builder">myVisionPortalBuilder</field>
+<comment pinned="false" h="150" w="325">Set the camera to the specified switchable camera name.</comment>
+<value name="CAMERA">
+<shadow type="navigation_switchableCamera_forAllWebcams" id="b5J1(P_]DqX,XG!iKJq~"/>
+<block type="navigation_webcamName" id="UXtP.ZgbSN5WUG=bj`,v">
+<field name="WEBCAM_NAME">Webcam 2</field>
+</block>
+</value>
+<next>
+<block type="visionPortalBuilder_setCameraResolution" id="a,s{uwV0Em`jDb_I(`26">
+<field name="VISION_PORTAL_BUILDER" id="?/a.@4cz_^+-?7?etGx;" variabletype="VisionPortal.Builder">myVisionPortalBuilder</field>
+<comment pinned="false" h="150" w="325">Set the camera resolution.</comment>
+<value name="CAMERA_WIDTH">
+<shadow type="math_number" id="yHT;W~k.$2O1@v7?p]o4">
+<field name="NUM">1920</field>
+</shadow>
+</value>
+<value name="CAMERA_HEIGHT">
+<shadow type="math_number" id="GWdAWk][iB;@nX:FTRGX">
+<field name="NUM">1080</field>
+</shadow>
+</value>
+<next>
+<block type="visionPortalBuilder_addProcessor" id="5J[u/r.z2m*wjrGt@LA7">
+<field name="VISION_PORTAL_BUILDER" id="?/a.@4cz_^+-?7?etGx;" variabletype="VisionPortal.Builder">myVisionPortalBuilder</field>
+<comment pinned="false" h="150" w="325">Add the AprilTag processor.</comment>
+<value name="VISION_PROCESSOR">
+<block type="variables_get" id="AD)bmcG]C9n{ZMc9p,hD">
+<field name="VAR" id="?.?jAjDXaP~!^(jq/Ls_">myAprilTagProcessor</field>
+</block>
+</value>
+<next>
+<block type="variables_set" id="RTOxiW$:s/|$X97L#C-^">
+<field name="VAR" id="-BBD?y)tt1`Xi1~w=paN">myVisionPortal</field>
+<comment pinned="false" h="150" w="325">Build the VisionPortal object and assign it to a variable.</comment>
+<value name="VALUE">
+<block type="visionPortalBuilder_build" id="vnwO}1LQw`0~a%:e:iQJ">
+<field name="VISION_PORTAL_BUILDER" id="?/a.@4cz_^+-?7?etGx;" variabletype="VisionPortal.Builder">myVisionPortalBuilder</field>
+</block>
+</value>
+<next>
+<block type="comment" id="823yX|UPP!,]7#F7H603">
+<field name="COMMENT">now init some variables for later</field>
+<next>
+<block type="variables_set" id="FzvsDo*GUZ}f-U?IJDO#">
+<field name="VAR" id="TsYkM[VU^Ab|3RMw10HM">desiredTag</field>
+<value name="VALUE">
+<block type="misc_null" id="15MT=nD6w0OfNendon,y"/>
+</value>
+<next>
+<block type="variables_set" id="8@N^{ZUc]cIT4JK#DY^J">
+<field name="VAR" id="Y8`SqjhNJX2,bPwL:7C%">targetFound</field>
+<value name="VALUE">
+<block type="logic_boolean" id="nFI:,}oh,NTC0/$;er?q">
+<field name="BOOL">FALSE</field>
+</block>
+</value>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+<block type="procedures_defnoreturn" id="9JxPRc-~=d|im)ECe/r)" x="-479" y="1381">
+<field name="NAME">moveRobot</field>
+<comment pinned="false" h="80" w="160">Describe this function...</comment>
+<statement name="STACK">
+<block type="comment" id="9yOXgmcLZ=bfa;QB6JHW">
+<field name="COMMENT">Combine the drive, strage and turn values to determine each wheel's power.</field>
+<next>
+<block type="comment" id="V]T#1OWb]gcS^~6VF=k.">
+<field name="COMMENT">Set up a variable for each drive wheel to save the power level for telemetry.</field>
+<next>
+<block type="variables_set" id="Sml%(~z4p~^OmccDk-KA">
+<field name="VAR" id="5HuSi||~.#=Plkm/1M43">leftFrontPower</field>
+<value name="VALUE">
+<block type="math_arithmetic" id="9j-Kv+/fnxdBqZr-GO$_">
+<field name="OP">MINUS</field>
+<value name="A">
+<shadow type="math_number" id="pnYN;L6t#Nw;8GfpzMhn">
+<field name="NUM">1</field>
+</shadow>
+<block type="math_arithmetic" id="b_3V,!t3Ws:atNKB$~;j">
+<field name="OP">MINUS</field>
+<value name="A">
+<shadow type="math_number" id="XM%%,jf;o7M9A52X,Zf[">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="RW1REGgm_|Feh*ddx.Py">
+<field name="VAR" id="yuQ8Y9VD$0X_^4wIhMEm">drive</field>
+</block>
+</value>
+<value name="B">
+<shadow type="math_number" id="T=j@D3EA5ZVHO?RN+UhR">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="AP;K3)wXbMfe1mgMO#V{">
+<field name="VAR" id="w,v/gS]9s/|CHHmRZm7!">strafe</field>
+</block>
+</value>
+</block>
+</value>
+<value name="B">
+<shadow type="math_number" id="Uc(_1O5Id5+PYZbs~]9)">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="D-3]A,k5X5AfK)0Qbfb}">
+<field name="VAR" id="oNy^sd0[Y].*E%Ega;Lc">turn</field>
+</block>
+</value>
+</block>
+</value>
+<next>
+<block type="variables_set" id="Qx5}f,GDh*sA]s=N#LXZ">
+<field name="VAR" id="7]zqkDWKo{@=n^XIOFEV">rightFrontPower</field>
+<value name="VALUE">
+<block type="math_arithmetic" id="q{zh}w,lK]hpf7gkIvrO">
+<field name="OP">ADD</field>
+<value name="A">
+<shadow type="math_number">
+<field name="NUM">1</field>
+</shadow>
+<block type="math_arithmetic" id="r.UnF6,,W9/0b=@!gsp^">
+<field name="OP">ADD</field>
+<value name="A">
+<shadow type="math_number">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="aq4;oJn9*ZMXTvn#hhqF">
+<field name="VAR" id="yuQ8Y9VD$0X_^4wIhMEm">drive</field>
+</block>
+</value>
+<value name="B">
+<shadow type="math_number">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="urv,nU@3HF}i9Pvp_Oxd">
+<field name="VAR" id="w,v/gS]9s/|CHHmRZm7!">strafe</field>
+</block>
+</value>
+</block>
+</value>
+<value name="B">
+<shadow type="math_number">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="Ae?byyUgQad(I/v!`oKB">
+<field name="VAR" id="oNy^sd0[Y].*E%Ega;Lc">turn</field>
+</block>
+</value>
+</block>
+</value>
+<next>
+<block type="variables_set" id="Xqff2gIazLP840)2_oW3">
+<field name="VAR" id="cg^aX{uc4{#^+^X/Wl@D">LeftBackPower</field>
+<value name="VALUE">
+<block type="math_arithmetic" id="K+HBw4aLFX:_r|wx:!xP">
+<field name="OP">MINUS</field>
+<value name="A">
+<shadow type="math_number">
+<field name="NUM">1</field>
+</shadow>
+<block type="math_arithmetic" id="J4Mm|i`-x{7Zj~E4ht0{">
+<field name="OP">ADD</field>
+<value name="A">
+<shadow type="math_number">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="47G/Pyz*|t:N2ADq!y9o">
+<field name="VAR" id="yuQ8Y9VD$0X_^4wIhMEm">drive</field>
+</block>
+</value>
+<value name="B">
+<shadow type="math_number">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="%GK=)*%v]KOFOKAmJl7A">
+<field name="VAR" id="w,v/gS]9s/|CHHmRZm7!">strafe</field>
+</block>
+</value>
+</block>
+</value>
+<value name="B">
+<shadow type="math_number">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="CIJxnKuh/|2[#iUqL~AP">
+<field name="VAR" id="oNy^sd0[Y].*E%Ega;Lc">turn</field>
+</block>
+</value>
+</block>
+</value>
+<next>
+<block type="variables_set" id="y7#THnG/t.|Lz^w}C6dA">
+<field name="VAR" id="+I)4RDvi7FC`XkK(9H3s">rightBackPower</field>
+<value name="VALUE">
+<block type="math_arithmetic" id="rFKtpp2B)c1;A(30.?z`">
+<field name="OP">ADD</field>
+<value name="A">
+<shadow type="math_number">
+<field name="NUM">1</field>
+</shadow>
+<block type="math_arithmetic" id=":%n)vD5a6H=.u3@D?m7(">
+<field name="OP">MINUS</field>
+<value name="A">
+<shadow type="math_number">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="$FItA5ucG9)=64I;8V/O">
+<field name="VAR" id="yuQ8Y9VD$0X_^4wIhMEm">drive</field>
+</block>
+</value>
+<value name="B">
+<shadow type="math_number">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="/GZ8B,UfZNB0R_$1j[a_">
+<field name="VAR" id="w,v/gS]9s/|CHHmRZm7!">strafe</field>
+</block>
+</value>
+</block>
+</value>
+<value name="B">
+<shadow type="math_number">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="ie`wFo@n/v7;vc6Vug3K">
+<field name="VAR" id="oNy^sd0[Y].*E%Ega;Lc">turn</field>
+</block>
+</value>
+</block>
+</value>
+<next>
+<block type="comment" id="exqn$WAFRC_:n{o~a:Ng">
+<field name="COMMENT">Normalize the values so no wheel power exceeds 100%</field>
+<next>
+<block type="comment" id="L!$.yh}^)9ON4O)W0}QD">
+<field name="COMMENT">This ensures that the robot maintains the desired motion.</field>
+<next>
+<block type="variables_set" id="w2u!LW6y~9W)8d2LVBKb">
+<field name="VAR" id="`/{ioR,|%4ZjMzN;}g^x">max</field>
+<value name="VALUE">
+<block type="math_on_list" id="_.URcLD;`|MW2v$kx]31">
+<mutation op="MAX"/>
+<field name="OP">MAX</field>
+<value name="LIST">
+<block type="lists_create_with" id="?HI0C_)XDuj?DD28TtI4">
+<mutation items="4"/>
+<value name="ADD0">
+<block type="math_single" id="-3^{8p=Ur!b(U85W/qce">
+<field name="OP">ABS</field>
+<value name="NUM">
+<shadow type="math_number" id="t,aV_G)?gi9ou9:ZXmgg">
+<field name="NUM">9</field>
+</shadow>
+<block type="variables_get" id="A=$f*BM[3q.~C[DKCi!k">
+<field name="VAR" id="5HuSi||~.#=Plkm/1M43">leftFrontPower</field>
+</block>
+</value>
+</block>
+</value>
+<value name="ADD1">
+<block type="math_single" id="?*#r:WiMeA)]FBahk1t,">
+<field name="OP">ABS</field>
+<value name="NUM">
+<shadow type="math_number" id="8rL:l`OSlpsi#|ET^5V9">
+<field name="NUM">9</field>
+</shadow>
+<block type="variables_get" id="{xI71+0ZI=Rb3PwI)?IO">
+<field name="VAR" id="cg^aX{uc4{#^+^X/Wl@D">LeftBackPower</field>
+</block>
+</value>
+</block>
+</value>
+<value name="ADD2">
+<block type="math_single" id="`CRheGPePcwKH=bi;4_`">
+<field name="OP">ABS</field>
+<value name="NUM">
+<shadow type="math_number" id="O8cfgWo%/`2izz@f)qyh">
+<field name="NUM">9</field>
+</shadow>
+<block type="variables_get" id="n_u}`Q(@GMNer5*nL)t|">
+<field name="VAR" id="7]zqkDWKo{@=n^XIOFEV">rightFrontPower</field>
+</block>
+</value>
+</block>
+</value>
+<value name="ADD3">
+<block type="math_single" id="q+?C|skPdZ6:d/dN:[qY">
+<field name="OP">ABS</field>
+<value name="NUM">
+<shadow type="math_number" id="LR$$DCopBErvtdNn7,Bz">
+<field name="NUM">9</field>
+</shadow>
+<block type="variables_get" id="|?*$j`WF-~p~roNNw3]9">
+<field name="VAR" id="+I)4RDvi7FC`XkK(9H3s">rightBackPower</field>
+</block>
+</value>
+</block>
+</value>
+</block>
+</value>
+</block>
+</value>
+<next>
+<block type="controls_if" id="{QZ`726$tT0FHFwg0J/U">
+<value name="IF0">
+<block type="logic_compare" id="Eff:k:QJ*3Y4S3q+cf5p">
+<field name="OP">GT</field>
+<value name="A">
+<block type="variables_get" id="Ao(x79F:XT_mQ_]6S~^d">
+<field name="VAR" id="`/{ioR,|%4ZjMzN;}g^x">max</field>
+</block>
+</value>
+<value name="B">
+<block type="math_number" id="f,DePE(Bm?g=0`Kd)s)Z">
+<field name="NUM">1</field>
+</block>
+</value>
+</block>
+</value>
+<statement name="DO0">
+<block type="variables_set" id="f0r3`meF07f8T.H!KK*$">
+<field name="VAR" id="5HuSi||~.#=Plkm/1M43">leftFrontPower</field>
+<value name="VALUE">
+<block type="math_arithmetic" id="rwgV.+%fJzUe1LZPrU-|">
+<field name="OP">DIVIDE</field>
+<value name="A">
+<shadow type="math_number" id="5IZknSc-a,XJ/~7RE,gh">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="u*FckYg)6(Hr+:xOa(:X">
+<field name="VAR" id="5HuSi||~.#=Plkm/1M43">leftFrontPower</field>
+</block>
+</value>
+<value name="B">
+<shadow type="math_number">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="ZYvxe=p}%vkom%H[fQ-a">
+<field name="VAR" id="`/{ioR,|%4ZjMzN;}g^x">max</field>
+</block>
+</value>
+</block>
+</value>
+<next>
+<block type="variables_set" id="8LzsyuY}4SU*~rroq-8{">
+<field name="VAR" id="cg^aX{uc4{#^+^X/Wl@D">LeftBackPower</field>
+<value name="VALUE">
+<block type="math_arithmetic" id="g4bou/gY3)`1~HM@Or92">
+<field name="OP">DIVIDE</field>
+<value name="A">
+<shadow type="math_number">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="!^Yp}|e{P3*`2(iP*H#*">
+<field name="VAR" id="cg^aX{uc4{#^+^X/Wl@D">LeftBackPower</field>
+</block>
+</value>
+<value name="B">
+<shadow type="math_number">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="F@!hvfGV)L3ZCJ~?8l.W">
+<field name="VAR" id="`/{ioR,|%4ZjMzN;}g^x">max</field>
+</block>
+</value>
+</block>
+</value>
+<next>
+<block type="variables_set" id="Z`-U~C,1zq2}TGZ]hK(;">
+<field name="VAR" id="7]zqkDWKo{@=n^XIOFEV">rightFrontPower</field>
+<value name="VALUE">
+<block type="math_arithmetic" id="GZ!|s|}m0o.4KgD=!1@)">
+<field name="OP">DIVIDE</field>
+<value name="A">
+<shadow type="math_number">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="Ov~B`V,,;XX,I7_gAiDJ">
+<field name="VAR" id="7]zqkDWKo{@=n^XIOFEV">rightFrontPower</field>
+</block>
+</value>
+<value name="B">
+<shadow type="math_number">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="{api@|TM6AeHaksAiPnH">
+<field name="VAR" id="`/{ioR,|%4ZjMzN;}g^x">max</field>
+</block>
+</value>
+</block>
+</value>
+<next>
+<block type="variables_set" id="R)v7I0oG5C{,1qFY%e%-">
+<field name="VAR" id="+I)4RDvi7FC`XkK(9H3s">rightBackPower</field>
+<value name="VALUE">
+<block type="math_arithmetic" id="*%eckh`sTbC8Ci8WUu}q">
+<field name="OP">DIVIDE</field>
+<value name="A">
+<shadow type="math_number">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="_o=8C3V-+HRAVqKom(5f">
+<field name="VAR" id="+I)4RDvi7FC`XkK(9H3s">rightBackPower</field>
+</block>
+</value>
+<value name="B">
+<shadow type="math_number">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="@Ur?IC~.B5j~%(b,0:S_">
+<field name="VAR" id="`/{ioR,|%4ZjMzN;}g^x">max</field>
+</block>
+</value>
+</block>
+</value>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+<next>
+<block type="dcMotor_setDualProperty_Number" id="FW|b2l[KQ(?pD$SdcB_v">
+<field name="PROP">Power</field>
+<field name="IDENTIFIER1">drive_leftBackAsDcMotor</field>
+<field name="IDENTIFIER2">drive_rightBackAsDcMotor</field>
+<data>{"IDENTIFIER1":"drive_leftBack","IDENTIFIER2":"drive_rightBack"}</data>
+<value name="VALUE1">
+<shadow type="math_number">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="pnJladOPNw|2F/peAu_Q">
+<field name="VAR" id="cg^aX{uc4{#^+^X/Wl@D">LeftBackPower</field>
+</block>
+</value>
+<value name="VALUE2">
+<shadow type="math_number">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="x_|I1ynLLV8@Pt1NoXR%">
+<field name="VAR" id="+I)4RDvi7FC`XkK(9H3s">rightBackPower</field>
+</block>
+</value>
+<next>
+<block type="dcMotor_setDualProperty_Number" id="+-CU2u#Yh^]uqvmAssbO">
+<field name="PROP">Power</field>
+<field name="IDENTIFIER1">drive_leftFrontAsDcMotor</field>
+<field name="IDENTIFIER2">drive_rightFrontAsDcMotor</field>
+<data>{"IDENTIFIER1":"drive_leftFront","IDENTIFIER2":"drive_rightFront"}</data>
+<value name="VALUE1">
+<shadow type="math_number">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="k?|n|=R~fNGKat?HV=#~">
+<field name="VAR" id="5HuSi||~.#=Plkm/1M43">leftFrontPower</field>
+</block>
+</value>
+<value name="VALUE2">
+<shadow type="math_number">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="]lxn:Z{OcxTCA*D(]Dw#">
+<field name="VAR" id="7]zqkDWKo{@=n^XIOFEV">rightFrontPower</field>
+</block>
+</value>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+<block type="procedures_defnoreturn" id="Eg%7GTPuhcoA]FCw9:]O" x="234" y="1893">
+<field name="NAME">telemetryAprilTag</field>
+<comment pinned="false" h="80" w="160">Display info (using telemetry) for a recognized AprilTag.</comment>
+<statement name="STACK">
+<block type="variables_set" id="c8~R@@~J_)0dhTTP,GP@">
+<field name="VAR" id="l)/,LjA`jR!1Nc@Z:`l!">myAprilTagDetections</field>
+<comment pinned="false" h="80" w="160">Get a list of AprilTag detections.</comment>
+<value name="VALUE">
+<block type="aprilTagProcessor_getDetections" id="^Sth`xX=n79Q8`P*Z#qt">
+<value name="APRIL_TAG_PROCESSOR">
+<block type="variables_get" id="Icn).;@XjTI7SR.j$UY#">
+<field name="VAR" id="?.?jAjDXaP~!^(jq/Ls_">myAprilTagProcessor</field>
+</block>
+</value>
+</block>
+</value>
+<next>
+<block type="telemetry_addTextData_All" id="3m5}jTks8BeMJ]|.h*Kp">
+<value name="KEY">
+<shadow type="text" id="MNA3Pe{~9.uc1dSMmO=j">
+<field name="TEXT"># AprilTags Detected</field>
+</shadow>
+</value>
+<value name="TEXT">
+<shadow type="text" id="DRWu-r*O-0eJ4pG2n$_l">
+<field name="TEXT"/>
+</shadow>
+<block type="lists_length" id="q{bEB[P*p2XiVOMj*ku#">
+<value name="VALUE">
+<block type="variables_get" id="/5v#48C2W5M+l:4)g!zX">
+<field name="VAR" id="l)/,LjA`jR!1Nc@Z:`l!">myAprilTagDetections</field>
+</block>
+</value>
+</block>
+</value>
+<next>
+<block type="controls_forEach" id="|@Y$y8D~],V(MRQ+Cyv{">
+<field name="VAR" id="vP~n9zf$lW%hYD/C.j_-">myAprilTagDetection</field>
+<comment pinned="false" h="81" w="199">Iterate through list and call a function to display info for each recognized AprilTag.</comment>
+<value name="LIST">
+<block type="variables_get" id="W,d1s!eFWeDT0X}~eq,n">
+<field name="VAR" id="l)/,LjA`jR!1Nc@Z:`l!">myAprilTagDetections</field>
+</block>
+</value>
+<statement name="DO">
+<block type="comment" id="U@Dkpel-LMa.00jJsqA-">
+<field name="COMMENT">Display info about the detection.</field>
+<next>
+<block type="telemetry_addLine" id="qrKb?#/HMYJo.RhU8rW:">
+<value name="TEXT">
+<shadow type="text" id="3^Lv-r.jG6}7LV;(yIh.">
+<field name="TEXT"/>
+</shadow>
+</value>
+<next>
+<block type="controls_if" id="1KHSCf_sX!Qd~BKfG}QD">
+<mutation else="1"/>
+<value name="IF0">
+<block type="aprilTagDetection_getProperty_IsNotNull" id=":^$lP:Ut!p3Z)E+vy^]D">
+<field name="PROP">metadata</field>
+<value name="APRIL_TAG_DETECTION">
+<block type="variables_get" id="9Lq*6VTlT$7uDRiB|mYe">
+<field name="VAR" id="vP~n9zf$lW%hYD/C.j_-">myAprilTagDetection</field>
+</block>
+</value>
+</block>
+</value>
+<statement name="DO0">
+<block type="controls_if" id="+41s]*UV_g`hqnNp$g83">
+<value name="IF0">
+<block type="logic_compare" id="iJe#vcOs]eKl`^~^~OdD">
+<field name="OP">EQ</field>
+<value name="A">
+<block type="aprilTagDetection_getProperty_Number" id="YYX(Yo)elOJNyrJDvp3O">
+<field name="PROP">id</field>
+<value name="APRIL_TAG_DETECTION">
+<block type="variables_get" id="v;dfCds1aais;1YeY47/">
+<field name="VAR" id="vP~n9zf$lW%hYD/C.j_-">myAprilTagDetection</field>
+</block>
+</value>
+</block>
+</value>
+<value name="B">
+<block type="variables_get" id="`o4QN163EA/8C#3d!Yrt">
+<field name="VAR" id=":3L_e1zj?UbkSA-NkcqK">DESIRED_TAG_ID</field>
+</block>
+</value>
+</block>
+</value>
+<statement name="DO0">
+<block type="variables_set" id="v@P7~t,[H6_EO*b(rati">
+<field name="VAR" id="TsYkM[VU^Ab|3RMw10HM">desiredTag</field>
+<value name="VALUE">
+<block type="variables_get" id=",2;05J%7XHzX+}{ySz$V">
+<field name="VAR" id="vP~n9zf$lW%hYD/C.j_-">myAprilTagDetection</field>
+</block>
+</value>
+<next>
+<block type="variables_set" id="#rC8_%|%EkM)1:EGZ8ZV">
+<field name="VAR" id="Y8`SqjhNJX2,bPwL:7C%">targetFound</field>
+<value name="VALUE">
+<block type="logic_boolean" id=";JCEub8,BZ*vPa~-76ZS">
+<field name="BOOL">TRUE</field>
+</block>
+</value>
+<next>
+<block type="telemetry_addLine" id="awB~K!HjEb=h6tM,%vLN">
+<value name="TEXT">
+<shadow type="text" id="?hM/$PX}4MN:|W`joKgn">
+<field name="TEXT"/>
+</shadow>
+<block type="text_join" id="0C_x2#T#t7yl!%45k{$?">
+<mutation items="4"/>
+<value name="ADD0">
+<block type="text" id="buEo7p[-2T4:49=`uwK1">
+<field name="TEXT">==== (ID </field>
+</block>
+</value>
+<value name="ADD1">
+<block type="aprilTagDetection_getProperty_Number" id="lifbVBMNn+.1j?y6v54X">
+<field name="PROP">id</field>
+<value name="APRIL_TAG_DETECTION">
+<block type="variables_get" id="w(63KWmGiZ83+qITBep;">
+<field name="VAR" id="vP~n9zf$lW%hYD/C.j_-">myAprilTagDetection</field>
+</block>
+</value>
+</block>
+</value>
+<value name="ADD2">
+<block type="text" id="=n-]].djPxb,OFyxcOQF">
+<field name="TEXT">) </field>
+</block>
+</value>
+<value name="ADD3">
+<block type="aprilTagDetection_getProperty_String" id="=AvXMAjUic3u3lbFtEt4">
+<field name="PROP">metadata.name</field>
+<value name="APRIL_TAG_DETECTION">
+<block type="variables_get" id="zKHYs.Y87Qrl9%G~Oq^V">
+<field name="VAR" id="vP~n9zf$lW%hYD/C.j_-">myAprilTagDetection</field>
+</block>
+</value>
+</block>
+</value>
+</block>
+</value>
+<next>
+<block type="telemetry_addLine" id=";grqK`+-g7;g50c=|L0l">
+<value name="TEXT">
+<shadow type="text" id="!y]i-sUsabeyV/)u=6D5">
+<field name="TEXT"/>
+</shadow>
+<block type="text_join" id="4TtGi;Z(gbFaks}Eap^9">
+<mutation items="7"/>
+<value name="ADD0">
+<block type="text" id="+]Cns+.i=%b0bFaT6;NI">
+<field name="TEXT">XYZ </field>
+</block>
+</value>
+<value name="ADD1">
+<block type="misc_formatNumber_withWidth" id="df*#gw3iYx$kvL$9{Y?m">
+<value name="NUMBER">
+<shadow type="math_number" id="g`p?z|x@JeU%MJ4.tSFQ">
+<field name="NUM">3.14159265</field>
+</shadow>
+<block type="aprilTagDetection_getProperty_Number" id="jUN`u.6t[:O8`9Ncql]!">
+<field name="PROP">ftcPose.x</field>
+<value name="APRIL_TAG_DETECTION">
+<block type="variables_get" id="mb(6}~t}KLoi4`XT~d:H">
+<field name="VAR" id="vP~n9zf$lW%hYD/C.j_-">myAprilTagDetection</field>
+</block>
+</value>
+</block>
+</value>
+<value name="WIDTH">
+<shadow type="math_number" id="k*}!VVn#l8HSq7E2i?#R">
+<field name="NUM">6</field>
+</shadow>
+</value>
+<value name="PRECISION">
+<shadow type="math_number" id="mh4H+`GE$Em,(iS4ZjPR">
+<field name="NUM">1</field>
+</shadow>
+</value>
+</block>
+</value>
+<value name="ADD2">
+<block type="text" id="y34}1aACqw@S]sESt=A#">
+<field name="TEXT"> </field>
+</block>
+</value>
+<value name="ADD3">
+<block type="misc_formatNumber_withWidth" id="4Oj?ZaC$d#_1X}?b[T.|">
+<value name="NUMBER">
+<shadow type="math_number" id="2cGf/q9c-ZnJ}LB6C1i$">
+<field name="NUM">3.14159265</field>
+</shadow>
+<block type="aprilTagDetection_getProperty_Number" id="^ZxENE!MDi;z:vW0d@XL">
+<field name="PROP">ftcPose.y</field>
+<value name="APRIL_TAG_DETECTION">
+<block type="variables_get" id="bYyr?K,sa#Z.])=_ot.X">
+<field name="VAR" id="vP~n9zf$lW%hYD/C.j_-">myAprilTagDetection</field>
+</block>
+</value>
+</block>
+</value>
+<value name="WIDTH">
+<shadow type="math_number" id="BQJxM*kkA=P:cx1$gjDj">
+<field name="NUM">6</field>
+</shadow>
+</value>
+<value name="PRECISION">
+<shadow type="math_number" id="$REh~]PUb9LYTO;OfzqZ">
+<field name="NUM">1</field>
+</shadow>
+</value>
+</block>
+</value>
+<value name="ADD4">
+<block type="text" id="D7A3=:fGOVPSdci(UQtX">
+<field name="TEXT"> </field>
+</block>
+</value>
+<value name="ADD5">
+<block type="misc_formatNumber_withWidth" id="FCZL%yFs6[0x{rm0ps54">
+<value name="NUMBER">
+<shadow type="math_number" id="|j[Xf6X[,{Y~6k#Ow9ay">
+<field name="NUM">3.14159265</field>
+</shadow>
+<block type="aprilTagDetection_getProperty_Number" id="@o/Xx/]f-CWGv|Tr)2Nk">
+<field name="PROP">ftcPose.z</field>
+<value name="APRIL_TAG_DETECTION">
+<block type="variables_get" id="[9!-4|yF{X2|/{iSu:SC">
+<field name="VAR" id="vP~n9zf$lW%hYD/C.j_-">myAprilTagDetection</field>
+</block>
+</value>
+</block>
+</value>
+<value name="WIDTH">
+<shadow type="math_number" id="ga,Viu`_|ozkv#5q3*@0">
+<field name="NUM">6</field>
+</shadow>
+</value>
+<value name="PRECISION">
+<shadow type="math_number" id="(E3-dHVlUbl(~6A~LN[p">
+<field name="NUM">1</field>
+</shadow>
+</value>
+</block>
+</value>
+<value name="ADD6">
+<block type="text" id=")9nfo^3]N$S,m~5}*3*=">
+<field name="TEXT">  (inch)</field>
+</block>
+</value>
+</block>
+</value>
+<next>
+<block type="telemetry_addLine" id="6W%[*9{;}.5Jl{VBB=*t">
+<value name="TEXT">
+<shadow type="text" id=";t?`r+|~SzTLUUHO=;M9">
+<field name="TEXT"/>
+</shadow>
+<block type="text_join" id="$$x)e|XJcO*g[Y8~M2/Q">
+<mutation items="7"/>
+<value name="ADD0">
+<block type="text" id="CNSpY2iH=tR#]P,pi4u.">
+<field name="TEXT">PRY </field>
+</block>
+</value>
+<value name="ADD1">
+<block type="misc_formatNumber_withWidth" id="sht8%%Nn`h2}jwZ`-{x)">
+<value name="NUMBER">
+<shadow type="math_number" id="?pMQrP+klggGPQ})NZWJ">
+<field name="NUM">3.14159265</field>
+</shadow>
+<block type="aprilTagDetection_getProperty_Number" id="Iy|1o|tQ9/Xq~XhaEN$_">
+<field name="PROP">ftcPose.pitch</field>
+<value name="APRIL_TAG_DETECTION">
+<block type="variables_get" id="rVJim4c8+/ys[,t:o!0a">
+<field name="VAR" id="vP~n9zf$lW%hYD/C.j_-">myAprilTagDetection</field>
+</block>
+</value>
+</block>
+</value>
+<value name="WIDTH">
+<shadow type="math_number" id="mHP*I^3G3|9rAiui`;?f">
+<field name="NUM">6</field>
+</shadow>
+</value>
+<value name="PRECISION">
+<shadow type="math_number" id="VxWPF,FgQz,lDodmj[WR">
+<field name="NUM">1</field>
+</shadow>
+</value>
+</block>
+</value>
+<value name="ADD2">
+<block type="text" id="]dbZO?6z_PP)Na=ij|hW">
+<field name="TEXT"> </field>
+</block>
+</value>
+<value name="ADD3">
+<block type="misc_formatNumber_withWidth" id="!i;Ow5b5|tm]^:f=af8O">
+<value name="NUMBER">
+<shadow type="math_number" id="xsH[9W8/eLks@vlm]1*g">
+<field name="NUM">3.14159265</field>
+</shadow>
+<block type="aprilTagDetection_getProperty_Number" id="ShLjZCVXxN!~/4l*tkIW">
+<field name="PROP">ftcPose.roll</field>
+<value name="APRIL_TAG_DETECTION">
+<block type="variables_get" id="OCoPF8gE#WFKctf6vd6f">
+<field name="VAR" id="vP~n9zf$lW%hYD/C.j_-">myAprilTagDetection</field>
+</block>
+</value>
+</block>
+</value>
+<value name="WIDTH">
+<shadow type="math_number" id="DyJDDqNjyT?RD%Og91T/">
+<field name="NUM">6</field>
+</shadow>
+</value>
+<value name="PRECISION">
+<shadow type="math_number" id="M?Svc5)[b)Apn186A8Em">
+<field name="NUM">1</field>
+</shadow>
+</value>
+</block>
+</value>
+<value name="ADD4">
+<block type="text" id="7-XP1=zX3p(TS(}va$9`">
+<field name="TEXT"> </field>
+</block>
+</value>
+<value name="ADD5">
+<block type="misc_formatNumber_withWidth" id=":tQhsy?3wU|KpZT;GEux">
+<value name="NUMBER">
+<shadow type="math_number" id="v%b/#{Uh]xNL*jCpZAlp">
+<field name="NUM">3.14159265</field>
+</shadow>
+<block type="aprilTagDetection_getProperty_Number" id="rr^=wlJCB2_afebAXJ}Z">
+<field name="PROP">ftcPose.yaw</field>
+<value name="APRIL_TAG_DETECTION">
+<block type="variables_get" id="vBZ8!}wPWKb}V3-g]Wle">
+<field name="VAR" id="vP~n9zf$lW%hYD/C.j_-">myAprilTagDetection</field>
+</block>
+</value>
+</block>
+</value>
+<value name="WIDTH">
+<shadow type="math_number" id="mu5y,^`sp#UgVsrfnkbc">
+<field name="NUM">6</field>
+</shadow>
+</value>
+<value name="PRECISION">
+<shadow type="math_number" id="1a@0e%XGstoBjtg)K@p]">
+<field name="NUM">1</field>
+</shadow>
+</value>
+</block>
+</value>
+<value name="ADD6">
+<block type="text" id="I*Wn1Gf}j+e`]CP5J0Cp">
+<field name="TEXT">  (deg)</field>
+</block>
+</value>
+</block>
+</value>
+<next>
+<block type="telemetry_addLine" id="p~aY/Ief^l:6#%yF5mBb">
+<value name="TEXT">
+<shadow type="text" id="[:Q^{:f(MSqR]$h@YO_G">
+<field name="TEXT">text</field>
+</shadow>
+<block type="text_join" id="7AAW16ak[E;pRyJ50_pV">
+<mutation items="7"/>
+<value name="ADD0">
+<block type="text" id="_D88fgJh36dZBe#kxQkh">
+<field name="TEXT">RBE </field>
+</block>
+</value>
+<value name="ADD1">
+<block type="misc_formatNumber_withWidth" id="o=,mI,_W=C-(irqk:S^/">
+<value name="NUMBER">
+<shadow type="math_number" id="67$:0vchTm|ZAu?yf9Zs">
+<field name="NUM">3.14159265</field>
+</shadow>
+<block type="aprilTagDetection_getProperty_Number" id="V_e8w[RX[YJ6%2RfwTK4">
+<field name="PROP">ftcPose.range</field>
+<value name="APRIL_TAG_DETECTION">
+<block type="variables_get" id="5U:C0C|9gsGJwjwric-u">
+<field name="VAR" id="vP~n9zf$lW%hYD/C.j_-">myAprilTagDetection</field>
+</block>
+</value>
+</block>
+</value>
+<value name="WIDTH">
+<shadow type="math_number" id="E}T84I!akJTmE1gb#KTc">
+<field name="NUM">6</field>
+</shadow>
+</value>
+<value name="PRECISION">
+<shadow type="math_number" id="UKUfpg-DJ~rM||Pp1;?~">
+<field name="NUM">1</field>
+</shadow>
+</value>
+</block>
+</value>
+<value name="ADD2">
+<block type="text" id="/)!A!j+m`c^.RSzJfnW8">
+<field name="TEXT"> </field>
+</block>
+</value>
+<value name="ADD3">
+<block type="misc_formatNumber_withWidth" id="v,Ilg5bR5*;(#^l3B@-0">
+<value name="NUMBER">
+<shadow type="math_number" id="%)S}?+}8]#C5YOJMTtIz">
+<field name="NUM">3.14159265</field>
+</shadow>
+<block type="aprilTagDetection_getProperty_Number" id="}bh%9Kz6)u_zYo7,L]Iq">
+<field name="PROP">ftcPose.bearing</field>
+<value name="APRIL_TAG_DETECTION">
+<block type="variables_get" id="B6P^H@vWo+vyX@sYn_ik">
+<field name="VAR" id="vP~n9zf$lW%hYD/C.j_-">myAprilTagDetection</field>
+</block>
+</value>
+</block>
+</value>
+<value name="WIDTH">
+<shadow type="math_number" id="5ti##om.fc`N4y~4C#;|">
+<field name="NUM">6</field>
+</shadow>
+</value>
+<value name="PRECISION">
+<shadow type="math_number" id="22o;=,7*otM:5h`-4L|A">
+<field name="NUM">1</field>
+</shadow>
+</value>
+</block>
+</value>
+<value name="ADD4">
+<block type="text" id="Q|e}m1um|X;(#X^F`wb(">
+<field name="TEXT"> </field>
+</block>
+</value>
+<value name="ADD5">
+<block type="misc_formatNumber_withWidth" id="x-{*.Ghd4zinz}U9X3?V">
+<value name="NUMBER">
+<shadow type="math_number" id=".MdJRQ6rUBU)RFzD8T%o">
+<field name="NUM">3.14159265</field>
+</shadow>
+<block type="aprilTagDetection_getProperty_Number" id="D(K1+O}E+Y7i_ek8}A?z">
+<field name="PROP">ftcPose.elevation</field>
+<value name="APRIL_TAG_DETECTION">
+<block type="variables_get" id="sv;lYz!5q^E[A|N14(.X">
+<field name="VAR" id="vP~n9zf$lW%hYD/C.j_-">myAprilTagDetection</field>
+</block>
+</value>
+</block>
+</value>
+<value name="WIDTH">
+<shadow type="math_number" id="GU73O^@;SXL))%*l[8Me">
+<field name="NUM">6</field>
+</shadow>
+</value>
+<value name="PRECISION">
+<shadow type="math_number" id="4Nv)-M9MfCY%aAn:1SEF">
+<field name="NUM">1</field>
+</shadow>
+</value>
+</block>
+</value>
+<value name="ADD6">
+<block type="text" id="x`,kpt}.uw,YSWON!D^j">
+<field name="TEXT">  (inch, deg, deg)</field>
+</block>
+</value>
+</block>
+</value>
+<next>
+<block type="controls_flow_statements" id="8TLy|o?:to$$3+8d@@+a">
+<field name="FLOW">BREAK</field>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</statement>
+<statement name="ELSE">
+<block type="telemetry_addLine" id=".k7)ZU|.JU[vLM%.9oWH">
+<value name="TEXT">
+<shadow type="text" id="hqwM9[:8R6P;nJWo`z$@">
+<field name="TEXT"/>
+</shadow>
+<block type="text_join" id="Q$XL59m.y(HLLD=Lb6bM">
+<mutation items="3"/>
+<value name="ADD0">
+<block type="text" id="GO{s|1|cjZX5wm!s}6^U">
+<field name="TEXT">==== (ID </field>
+</block>
+</value>
+<value name="ADD1">
+<block type="aprilTagDetection_getProperty_Number" id="YbKMT]1!N/1orH}f.`^%">
+<field name="PROP">id</field>
+<value name="APRIL_TAG_DETECTION">
+<block type="variables_get" id="*DZMa]u.xVDWo54-+9Xp">
+<field name="VAR" id="vP~n9zf$lW%hYD/C.j_-">myAprilTagDetection</field>
+</block>
+</value>
+</block>
+</value>
+<value name="ADD2">
+<block type="text" id="Ej2sUV*ZReT^:zwt~{Ar">
+<field name="TEXT">) Unknown</field>
+</block>
+</value>
+</block>
+</value>
+<next>
+<block type="telemetry_addLine" id="*wewMc^H[$Rs0;EK}Ow]">
+<value name="TEXT">
+<shadow type="text" id="2oq;P##KvH:(,WjrIe3!">
+<field name="TEXT"/>
+</shadow>
+<block type="text_join" id="DS^4mx0$o}XW[*EAx9g+">
+<mutation items="5"/>
+<value name="ADD0">
+<block type="text" id="~aS!V+hMdY{-*4G3Ow%3">
+<field name="TEXT">Center </field>
+</block>
+</value>
+<value name="ADD1">
+<block type="misc_formatNumber_withWidth" id="NWWJ-BvdUXyMBZ|RD`m}">
+<value name="NUMBER">
+<shadow type="math_number" id="WWZ1rIy[E-^rf4i5ES.w">
+<field name="NUM">3.14159265</field>
+</shadow>
+<block type="aprilTagDetection_getProperty_Number" id="Kns6PW?m}A;SO?@NVb#)">
+<field name="PROP">center.x</field>
+<value name="APRIL_TAG_DETECTION">
+<block type="variables_get" id="Ar)`$(G]w1~mg?c!0{v;">
+<field name="VAR" id="vP~n9zf$lW%hYD/C.j_-">myAprilTagDetection</field>
+</block>
+</value>
+</block>
+</value>
+<value name="WIDTH">
+<shadow type="math_number" id="ZZ080[{./+Y}t=(P1DCR">
+<field name="NUM">6</field>
+</shadow>
+</value>
+<value name="PRECISION">
+<shadow type="math_number" id="sPPkrRLvHyLpl?+E}RhL">
+<field name="NUM">0</field>
+</shadow>
+</value>
+</block>
+</value>
+<value name="ADD2">
+<block type="text" id="M[jW(z}Tg(pfF5o6v96v">
+<field name="TEXT"/>
+</block>
+</value>
+<value name="ADD3">
+<block type="misc_formatNumber_withWidth" id="IGswFrO!Q%aCF}3x,SPE">
+<value name="NUMBER">
+<shadow type="math_number" id="iQ6P;:;Igrei}.mq2:.{">
+<field name="NUM">3.14159265</field>
+</shadow>
+<block type="aprilTagDetection_getProperty_Number" id="P2eT2TYX6nNBSYz7e^E)">
+<field name="PROP">center.y</field>
+<value name="APRIL_TAG_DETECTION">
+<block type="variables_get" id="ZmOVtYIkx|@b66VSAfd]">
+<field name="VAR" id="vP~n9zf$lW%hYD/C.j_-">myAprilTagDetection</field>
+</block>
+</value>
+</block>
+</value>
+<value name="WIDTH">
+<shadow type="math_number" id="MQkYmiA}ms4pA[Ifr2gb">
+<field name="NUM">6</field>
+</shadow>
+</value>
+<value name="PRECISION">
+<shadow type="math_number" id="*L=(!sY,[nz~xV=Ke@]u">
+<field name="NUM">0</field>
+</shadow>
+</value>
+</block>
+</value>
+<value name="ADD4">
+<block type="text" id="lH92feGire@JDBfwGTlN">
+<field name="TEXT"> (pixels)</field>
+</block>
+</value>
+</block>
+</value>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+<next>
+<block type="telemetry_addLine" id="3N{F`jhy%rx/{Xex;5zu">
+<value name="TEXT">
+<shadow type="text" id="ds{Hr}!u1tUZ{*]D~==j">
+<field name="TEXT"/>
+</shadow>
+</value>
+<next>
+<block type="telemetry_addLine" id="[:W.s1Ok!]MP)3.3IU{#">
+<value name="TEXT">
+<shadow type="text" id="Pzz,~#oj]g6(p8-kE+HJ">
+<field name="TEXT">key:</field>
+</shadow>
+</value>
+<next>
+<block type="telemetry_addLine" id="(z3|~vT*DZX[fOyQ2%S[">
+<value name="TEXT">
+<shadow type="text" id="M=~-,X%t3PZW:?]x+FCV">
+<field name="TEXT">XYZ = X (Right), Y (Forward), Z (Up) dist.</field>
+</shadow>
+</value>
+<next>
+<block type="telemetry_addLine" id="M,AbdMv6W{1dFQc)zQt~">
+<value name="TEXT">
+<shadow type="text" id="`KTr5c!E2VUU.9*_77qL">
+<field name="TEXT">PRY = Pitch, Roll &amp; Yaw (XYZ Rotation)</field>
+</shadow>
+</value>
+<next>
+<block type="telemetry_addLine" id="uuC6(PL0R.pO7.AFo]db">
+<value name="TEXT">
+<shadow type="text" id="^GlP*DEB!=^Mvq=zsRKv">
+<field name="TEXT">RBE = Range, Bearing &amp; Elevation</field>
+</shadow>
+</value>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</xml>
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<Extra>
+<OpModeMeta flavor="AUTONOMOUS" group="" autoTransition="" />
+<Enabled value="true" />
+</Extra>
