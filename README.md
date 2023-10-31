@@ -1,5 +1,5 @@
 # Centerstage-Blocks
-Repository of Blocks example programs from the Centerstage FTC season.
+Repository of Blocks example programs from the Centerstage FTC season. Click on the program names below to see the downloaded image of the program.
 
 Note: work in progress, just a couple of programs uploaded so far.
 
@@ -9,9 +9,9 @@ blocks-AprilTag - basic April Tag program with Len Intrinsics set for Logitech C
 
 blocks-AprilTagEasy - Blocks supplied sample program that shows detected April Tags on the driver station via telemetry.
 
-blocks-RobotAutoDriveTFODpixel - example program that combines the TFOD sample program and the BasicOmniOpMode sample program. It drives forward, the looks at each spike mark in turn and uses TFOD to check for the pixel. If found, the robot drives onto the spike mark and announces that if found the pixel.
+[blocks-RobotAutoDriveTFODpixel](Images/blocks-RobotAutoDriveTFODpixel.png) - example program that combines the TFOD sample program and the BasicOmniOpMode sample program. It drives forward, the looks at each spike mark in turn and uses TFOD to check for the pixel. If found, the robot drives onto the spike mark and announces that if found the pixel.
 
-blocks-RobotAutoDriveToAprilTagOmni - Based on the Java sample program RobotAutoDriveToAprilTagOmni, but this program is strictly autonomous.
+[blocks-RobotAutoDriveToAprilTagOmni](Images/blocks-RobotAutoDriveToAprilTagOmni.png) - Based on the Java sample program RobotAutoDriveToAprilTagOmni, but this program is strictly autonomous.
 
 blocks-TFOD - basic TFOD that detects the pixel, with webcam resolution set to 1920x1080.
 
