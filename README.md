@@ -14,6 +14,17 @@ Studica-Teleop - Blocks program to drive the robot during the driver controlled 
 
 These  programs make use of a demonstration robot uses mecanum wheels and four motors. It was built from the Studica robotics Kit: https://www.studica.com/studica-robotics/studica-robotics-ftc-starter-kit-2023-2024.
 
+The config file has these names:
+- Webcam 1
+- Webcam 2
+- Motor port 0 - NeveRest40Gearmotor - drive_leftFront
+- Motor port 1 -NeveRest40Gearmotor - drive_leftBack
+- Motor port 2 -NeveRest40Gearmotor - drive_rightFront
+- Motor port 3 -NeveRest40Gearmotor - drive_rightBack
+- Servo port 0 - Servo - plane
+- Servo port 0 - Servo - hang
+- Servo port 0 - Servo - pixel
+
 ![Model](https://raw.githubusercontent.com/acharraggi/Centerstage-Blocks/main/Images/PXL_20231028_205146758.jpg)
 
 - It has two webcams, one points down for Pixel detection, one points forward for April Tag detection.
